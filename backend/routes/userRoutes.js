@@ -5,7 +5,7 @@ import {
   registerUser,
   getUserProfile,
   updateUserProfile,
-  getUsers,
+  //getUsers,
   deleteUser,
   getUserById,
   updateUser,
@@ -13,12 +13,12 @@ import {
 import { protect } from '../middleware/authMiddleware.js'
 
 
- router.route('/').post(registerUser).get(protect, admin, getUsers)
+ router.route('/').post(registerUser)
  router.post('/login', authUser)
  router
    .route('/profile')
    .get(protect, getUserProfile)
-//   .put(protect, updateUserProfile)
+   .put(protect, updateUserProfile)
 // router
 //   .route('/:id')
 //   .delete(protect, admin, deleteUser)
