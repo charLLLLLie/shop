@@ -1,7 +1,7 @@
 {
-  "name": "shop",
+  "name": "proshop",
   "version": "1.0.0",
-  "description": "MERN shopping cart",
+  "description": "MERN shopping cart app",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -11,31 +11,23 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "heroku-postbiuld": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/charLLLLLie/shop.git"
-  },
-  "author": "Kirill Burak",
+  "author": "kirill",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/charLLLLLie/shop/issues"
-  },
-  "homepage": "https://github.com/charLLLLLie/shop#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
-    "dotenv": "^10.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.10",
+    "mongoose": "^5.10.6",
     "morgan": "^1.10.0",
     "multer": "^1.4.2"
   },
   "devDependencies": {
-    "concurrently": "^6.1.0",
-    "nodemon": "^2.0.7"
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
   }
 }
