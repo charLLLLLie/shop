@@ -29,11 +29,11 @@ const OrderScreen = ({ match, history }) => {
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
 
-//   const orderDeliver = useSelector((state) => state.orderDeliver)
-//   const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+  const orderDeliver = useSelector((state) => state.orderDeliver)
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver
 
-//   const userLogin = useSelector((state) => state.userLogin)
-//   const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   if (!loading) {
     //   Calculate prices
@@ -47,9 +47,9 @@ const OrderScreen = ({ match, history }) => {
   }
 
   useEffect(() => {
-    // if (!userInfo) {
-    //   history.push('/login')
-    // }
+    if (!userInfo) {
+      history.push('/login')
+    }
 
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
@@ -63,7 +63,7 @@ const OrderScreen = ({ match, history }) => {
       document.body.appendChild(script)
     }
 
-    if (!order || successPay ) {
+    if (!order || successPay || successDeliver ) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
@@ -81,9 +81,9 @@ const OrderScreen = ({ match, history }) => {
     dispatch(payOrder(orderId, paymentResult))
   }
 
-//   const deliverHandler = () => {
-//     dispatch(deliverOrder(order))
-//   }
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order))
+  }
 
   return loading ? (
     <Loader />
@@ -209,7 +209,7 @@ const OrderScreen = ({ match, history }) => {
                 </ListGroup.Item>
               )}
               {loadingDeliver && <Loader />}
-              {userInfo &&
+              {userInfo && 
                 userInfo.isAdmin &&
                 order.isPaid &&
                 !order.isDelivered && (
